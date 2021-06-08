@@ -1,0 +1,31 @@
+<div class="container mt-2">
+    <h1>Listado de Clientes</h1>
+    <form action="">
+        <div class="mb-3">
+            
+            <input type="text" class="form-control" placeholder="Buscar Cliente">
+          </div>
+    </form>
+    <div class="row">
+        <div class="col-sm-3" *ngFor="let cliente of clientes">
+
+            <div class="card" >
+                <img [src]="cliente.data.icolink" class="card-img-top mx-auto mt-3" 
+                    style="width: 50%; height: 50%;">
+                <div class="card-body">
+                    <h5 class="card-title">{{cliente.data.nombre}} {{cliente.data.apellido}}</h5>
+                    
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{cliente.data.rut}}</li>
+                    <li class="list-group-item">{{cliente.data.correo}}</li>
+                    <li class="list-group-item">{{cliente.data.telefono}}</li>
+                    
+                    <li class="list-group-item">
+                        <a [routerLink]="['/agregar-cliente/',cliente.id]" class="card-link">Editar</a>
+                        <a href="#" class="card-link text-danger">Desactivar</a></li>
+                  </ul>
+            </div>
+        </div>
+    </div>
+</div>

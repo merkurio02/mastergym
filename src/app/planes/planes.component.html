@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-8">
+            <h3>Planes Actuales</h3>
+            <div class="card mt-2" *ngFor="let plan of planes">
+                <div class="row">
+                    <div class="col-5 d-flex align-items-center">
+                        <div class="card-body ">
+                            <h5 class="card-title">{{plan.data.nombre}}</h5>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="card-body">
+
+
+                            <div class="card-subtitle">{{plan.data.duracion}} {{plan.data.tipoDuracion}}s</div>
+                            <div class="card-text">${{plan.data.valor | number}}</div>
+                        </div>
+                    </div>
+                    <div class="col-2 d-flex align-items-center">
+                        <button (click)="editarPlan(plan)" class="btn btn-warning">Editar</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-12 col-md-4">
+            <form [formGroup]="formularioPlan" action="">
+                <h3>Agregar Plan</h3>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input formControlName="nombre" type="text" class="form-control" id="nombre"
+                        placeholder="Nombre del plan">
+                </div>
+                <div class="mb-3">
+                    <label for="valor" class="form-label">Valor</label>
+                    <input formControlName="valor" type="text" class="form-control" id="valor" placeholder="$">
+                </div>
+                <div class="row">
+
+                    <label for="duracion" class="form-label">Duracion</label>
+                    <div class="col">
+
+                        <div class="mb-3">
+                            <input formControlName="duracion" type="number" class="form-control" id="duracion" min="1">
+                        </div>
+
+                    </div>
+                    <div class="col">
+                        <select formControlName="tipoDuracion" class="form-select" aria-label="Default select example">
+                            <option value="Dia" selected>Dia/s</option>
+                            <option value="Semana">Semana/s</option>
+                            <option value="Quincena">Quincena/s</option>
+                            <option value="Mes">Mes/es</option>
+                            <option value="año">Año(s)</option>
+                        </select>
+                    </div>
+
+
+                </div>
+
+                <button [disabled]="formularioPlan.invalid" *ngIf="!editando" (click)="guardar()" class="btn btn-primary">Guardar</button>
+
+                <button (click)="editar()" [disabled]="formularioPlan.invalid" *ngIf="editando" class="btn btn-warning">Actualizar</button>
+                <button (click)="cancelarEditar()" *ngIf="editando" class="btn btn-danger mx-1">Cancelar</button>
+            </form>
+        </div>
+    </div>
+</div>

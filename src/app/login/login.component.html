@@ -1,0 +1,37 @@
+<div class="container row">
+    
+    <div class="col-6 m-auto text-center">
+        <i class="fas fa-dumbbell fa-10x"></i>
+        <h2>Bienvenido a MasterGym</h2>
+    <h3>Por favor ingrese sus datos.</h3>
+    </div>
+    <div class="col-12"></div>
+    <form class="col-6 m-auto" [formGroup]="formularioLogin">
+        <div class="mb-3">
+          <label for="email" class="form-label">Correo electronico</label>
+          <input formControlName="email" type="email" class="form-control" id="email" >
+          <div *ngIf="formularioLogin.controls['email'].invalid && formularioLogin.controls['email'].dirty" class="alert alert-danger mt-3" role="alert">
+            <span *ngIf="formularioLogin.controls['email'].errors.required">Correo es requerido</span>
+            <span *ngIf="formularioLogin.controls['email'].errors.email">Correo no es valido</span>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Contraseña</label>
+          <input formControlName="password" (keyUp.enter)="login()" type="password" class="form-control" id="password" >
+        </div>
+
+        <div *ngIf="formularioLogin.controls['password'].invalid && formularioLogin.controls['password'].dirty" class="alert alert-danger mt-3" role="alert">
+          <span *ngIf="formularioLogin.controls['password'].errors.required">Contraseña es requerida</span>
+        </div>
+
+
+        <button (click)="login()" [disabled]="!formularioLogin.valid" type="submit" class="btn btn-primary">Login</button>
+      
+        <div *ngIf="!datosCorrectos" class="alert alert-warning mt-3" role="alert">
+          {{mensajeError}}
+        </div> 
+
+      </form>
+
+      <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "large" color = "#fffff" type = "ball-pulse" [fullScreen] = "true"><p style="color: white" > Cargando </p></ngx-spinner> 
+</div>

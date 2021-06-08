@@ -1,0 +1,26 @@
+<div class="clientes">
+    <div class="mb-3" *ngIf="!nombre">
+        <label for="nombre">Clientes</label>
+        <input type="text" (input)="buscaClientes($event)" id="nombre" class="form-control" placeholder="Escribe el nombre del cliente a buscar">
+
+
+    </div>
+    <div class="mb-3" *ngIf="nombre">
+        <label for="nombre">Clientes</label>
+        <div class="row">
+            <div class="col-10">
+                <input [(ngModel)]="nombre" disabled type="text" class="form-control" autocomplete="new-text" > 
+            </div>
+            <div (click)="cancelarSeleccion()" class="col-2"><button class="btn btn-danger">X</button></div>
+        </div>
+
+    </div>
+    <div class="list-group">
+
+        <div *ngFor="let cliente of clientes">
+            <a *ngIf="cliente.visible" (click)="seleccionarCliente(cliente)"
+                class="list-group-item list-group-item-action">{{cliente.data.nombre}} {{cliente.data.apellido}}</a>
+
+        </div>
+    </div>
+</div>

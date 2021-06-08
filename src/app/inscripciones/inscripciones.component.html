@@ -1,0 +1,23 @@
+<div class="container">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Plan</th>
+            <th scope="col">Fecha inicio</th>
+            <th scope="col">Fecha final</th>
+            <th scope="col">Pagado</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ins of incripciones">
+            <th >{{ins.clienteObtenido}}</th>
+            <td>{{ins.plan}}</td>
+            <td>{{ins.fecha | date:'dd - MMM -yy'}}</td>
+            <td>{{ins.fechaFinal | date:'dd - MMM -yy'	}}</td>
+            <td>{{ins.total | currency:'$':'symbol':'0.0'}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
